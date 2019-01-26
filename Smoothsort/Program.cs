@@ -27,7 +27,9 @@ namespace ConsoleApplication1
         List<int> sizeList;
         List<int> ln;
         Dictionary<int, int> lookup;
-
+        
+        /* --- INITIALIZATION --- */
+        
         public Smoothsort(int n)
         {
             unsorted = new int[n];
@@ -42,6 +44,9 @@ namespace ConsoleApplication1
             i = 0;
             n = 0;
         }
+        
+        /* Filling the "unsorted" array with random values */
+        
         public void GenRandom()
         {
             Random rnd = new Random();
@@ -50,6 +55,13 @@ namespace ConsoleApplication1
                 unsorted[i] = rnd.Next(0, 100);
             }
         }
+        
+        /* --- MAIN WORKING --- */
+        
+        /* Acts like a handling method. Calls three methods: Heapify() and FixHeap() 
+        repeatedly until the heap struture is built and calls Remove() method until all 
+        the elements are sorted */
+        
         public void Sort()
         {
             while (presort.Count != unsorted.Length)
@@ -66,7 +78,10 @@ namespace ConsoleApplication1
                 Console.WriteLine(item);
             }
         }
-
+        
+        /* Takes the "unsorted" array as a parameter and makes a heap out of it and stores it 
+           in "presort" array*/
+        
         public void Heapify(int[] arr)
         {
             n = sizeList.Count - 1;
@@ -91,13 +106,17 @@ namespace ConsoleApplication1
             }
             i++;
         }
-
+        
+        /* This method fixes the "presort" array according to the required properties of leonardo heaps */
+        
         public void FixHeap()
         {
             int s = presort.Count() - 1;
             int current = presort[s];
             int l = sizeList.Count - 1;
-
+            
+            /* Checks whether there is a heap to the left and if its root is larger. 
+               If there is a larger root, then it swaps with the larger one. */
             while (l > 0 && presort[s - sizeList[l]] > current && s >= l)
             {
                 int temp = presort[s - 1];
@@ -109,6 +128,8 @@ namespace ConsoleApplication1
             }
             int k = lookup[sizeList[l]];
             int a = s;
+            
+            /* Checks for the max-heap property: If the root is smaller than its children, swap! */
             while (ln[k] > 1 && (presort[a - 1] > presort[a] || presort[a - 1 - ln[k - 2]] > presort[a]))
             {
                 int left = presort[a - 1 - ln[k - 2]];
@@ -136,6 +157,8 @@ namespace ConsoleApplication1
             }
         }
         int l = 0;
+        
+        /* This method removes the last element from "presort" array and stores it in "sorted" array. */
         public void Remove()
         {
             int s = presort.Count - 1;
@@ -146,7 +169,9 @@ namespace ConsoleApplication1
             sorted[s] = presort[s];
             fixHeapSize(l);
             l = sizeList.Count - 1;
-
+            
+            /* If the heap has children, some fixing is required to ensure
+               that heap structure is maintained.*/
             if (prevSize > 1)
             {
                 left = s - 1 - ln[lookup[prevSize] - 2];
@@ -163,7 +188,10 @@ namespace ConsoleApplication1
             l--;
 
         }
-
+        
+        /* --- HELPER FUNCTIONS --- */
+        
+        /*Used in Heapify() to check for consecutive leonardo numbers*/
         public bool CheckLeonardo(int a, int b)
         {
             int x = lookup[a];
@@ -179,6 +207,8 @@ namespace ConsoleApplication1
 
             return false;
         }
+        
+        /* Used in Remove() to fix the heap after removing elements.*/
         public void fixHeapSize(int l)
         {
             int current = lookup[sizeList[l]];
