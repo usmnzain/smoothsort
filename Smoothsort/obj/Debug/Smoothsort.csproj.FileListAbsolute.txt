@@ -1,0 +1,7 @@
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\bin\Debug\Smoothsort.exe.config
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\bin\Debug\Smoothsort.exe
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\bin\Debug\Smoothsort.pdb
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\obj\Debug\Smoothsort.csprojAssemblyReference.cache
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\obj\Debug\Smoothsort.csproj.CoreCompileInputs.cache
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\obj\Debug\Smoothsort.exe
+C:\Users\usman\source\repos\Smoothsort\Smoothsort\obj\Debug\Smoothsort.pdb
